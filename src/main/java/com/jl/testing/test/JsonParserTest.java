@@ -1,4 +1,4 @@
-package com.jl.lld.test;
+package com.jl.testing.test;
 
 import org.joda.time.DateTime;
 import org.joda.time.Seconds;
