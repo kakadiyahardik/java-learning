@@ -17,6 +17,12 @@ public class CommandExecutorFactory {
     public CommandExecutorFactory(ParkingLotService parkingLotService, OutputPrinter outputPrinter) {
         commandExecutorMap.put(CreateParkingLotCommandExecutor.COMMAND_NAME,
                 new CreateParkingLotCommandExecutor(parkingLotService, outputPrinter));
+        commandExecutorMap.put(ExitCommandExecutor.COMMAND_NAME,
+                new ExitCommandExecutor(parkingLotService, outputPrinter));
+        commandExecutorMap.put(ParkCommandExecutor.COMMAND_NAME, new ParkCommandExecutor(parkingLotService,
+                outputPrinter));
+        commandExecutorMap.put(LeaveCommandExecutor.COMMAND_NAME, new LeaveCommandExecutor(parkingLotService,
+                outputPrinter));
     }
 
     public CommandExecutor getCommandExecutor(Command command) {

@@ -1,6 +1,7 @@
 package com.jl.lld.parkingLot.strategy;
 
 import com.jl.lld.parkingLot.model.Slot;
+import com.jl.lld.parkingLot.utils.IntegerValidator;
 
 /**
  * @author Hardik Kakadiya
@@ -18,7 +19,7 @@ public interface ParkingStrategy {
      *
      * @return slot details
      */
-    Slot getNextSlot();
+    Integer getNextSlot();
 
     /**
      * remove slot from available slots. so its marked occupied
