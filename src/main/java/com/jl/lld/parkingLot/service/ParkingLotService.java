@@ -6,6 +6,12 @@ import com.jl.lld.parkingLot.model.ParkingLot;
 import com.jl.lld.parkingLot.model.Slot;
 import com.jl.lld.parkingLot.strategy.ParkingStrategy;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 /**
  * @author Hardik Kakadiya
  */
@@ -54,7 +60,51 @@ public class ParkingLotService {
      * @param slotNumber slot number to make free
      */
     public void leave(int slotNumber) {
-        Slot slot = parkingLot.leave(slotNumber);
+        parkingLot.leave(slotNumber);
         parkingStrategy.addSlot(new Slot(slotNumber));
+    }
+
+    public List<Slot> getOccupideSlots() {
+        Map<Integer, Slot> slots = parkingLot.getSlots();
+        List<Slot> filledSlots = new ArrayList<>();
+        for (Map.Entry<Integer, Slot> entry : slots.entrySet()) {
+            if (!entry.getValue().isSlotFree()) {
+                filledSlots.add(entry.getValue());
+            }
+        }
+        return filledSlots;
+    }
+
+    public List<String> getCarRegiNumberWithColor(String color) {
+        Map<Integer, Slot> slots = parkingLot.getSlots();
+        List<String> carRegiNum = new ArrayList<>();
+        for (Map.Entry<Integer, Slot> entry : slots.entrySet()) {
+            if (!entry.getValue().isSlotFree() && entry.getValue().getParkedCar().getColor().equalsIgnoreCase(color)) {
+                carRegiNum.add(entry.getValue().getParkedCar().getCarNumber());
+            }
+        }
+        return carRegiNum;
+    }
+
+    public List<Slot> getSlotsForColor(String color) {
+        List<Slot> slots = getOccupideSlots();
+
+        return slots.stream()
+                .filter(slot -> slot.getParkedCar().getColor().equalsIgnoreCase(color))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * get slots where car parked with given registration number
+     *
+     * @param registrationNumber car number
+     * @return
+     */
+    public Optional<Slot> getSlotsForRegiNumber(String registrationNumber) {
+        List<Slot> slots = getOccupideSlots();
+
+        return slots.stream()
+                .filter(slot -> slot.getParkedCar().getCarNumber().equalsIgnoreCase(registrationNumber))
+                .findFirst();
     }
 }

@@ -23,6 +23,14 @@ public class CommandExecutorFactory {
                 outputPrinter));
         commandExecutorMap.put(LeaveCommandExecutor.COMMAND_NAME, new LeaveCommandExecutor(parkingLotService,
                 outputPrinter));
+        commandExecutorMap.put(StatusCommandExecutor.COMMAND_NAME, new StatusCommandExecutor(parkingLotService,
+                outputPrinter));
+        commandExecutorMap.put(ColorsToRegiNumberCommandExecutor.COMMAND_NAME,
+                new ColorsToRegiNumberCommandExecutor(parkingLotService, outputPrinter));
+        commandExecutorMap.put(ColorsToSlotNumberCommandExecutor.COMMAND_NAME,
+                new ColorsToSlotNumberCommandExecutor(parkingLotService, outputPrinter));
+        commandExecutorMap.put(RegiNumberToSlotCommandExecutor.COMMAND_NAME,
+                new RegiNumberToSlotCommandExecutor(parkingLotService, outputPrinter));
     }
 
     public CommandExecutor getCommandExecutor(Command command) {
