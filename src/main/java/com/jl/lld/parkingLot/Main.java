@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         ParkingLotService parkingLotService = new ParkingLotService();
-        OutputPrinter outputPrinter = new OutputPrinter();
+        com.jl.lld.parkingLot.OutputPrinter outputPrinter = new com.jl.lld.parkingLot.OutputPrinter();
         CommandExecutorFactory commandExecutorFactory = new CommandExecutorFactory(parkingLotService,
                 outputPrinter);
 
