@@ -21,5 +21,6 @@ public class Cab {
     public Cab(String id, Driver driver) {
         this.id = id;
         this.driver = driver;
+        this.available = true;
     }
 }

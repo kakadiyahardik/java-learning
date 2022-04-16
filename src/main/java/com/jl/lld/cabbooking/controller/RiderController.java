@@ -3,10 +3,7 @@ package com.jl.lld.cabbooking.controller;
 import com.jl.lld.cabbooking.manager.CabManager;
 import com.jl.lld.cabbooking.manager.RiderManager;
 import com.jl.lld.cabbooking.manager.TripManager;
-import com.jl.lld.cabbooking.model.Cab;
-import com.jl.lld.cabbooking.model.Driver;
-import com.jl.lld.cabbooking.model.Location;
-import com.jl.lld.cabbooking.model.Trip;
+import com.jl.lld.cabbooking.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +26,8 @@ public class RiderController {
     private RiderManager riderManager;
 
     @RequestMapping(value = "/rider/register", method = RequestMethod.POST)
-    public ResponseEntity registerCab(final String cabId, final String driverName) {
-        cabManager.createCab(new Cab(cabId, new Driver("", driverName)));
+    public ResponseEntity registerRider(final String riderId, final String riderName) {
+        riderManager.createRider(new Rider(riderId, riderName));
         return ResponseEntity.ok("");
     }
 

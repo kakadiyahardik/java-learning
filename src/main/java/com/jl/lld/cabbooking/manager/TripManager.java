@@ -32,7 +32,7 @@ public class TripManager {
     private PricingStrategy pricingStrategy;
 
     public void createTrip(Rider rider, Location from, Location to) {
-
+        System.out.println("started");
         List<Cab> nearestCabs = cabManager.getClosestCabs(from, MAX_ALLOWED_TRIP_MATCHING_DISTANCE);
 
         List<Cab> availableCabs =
@@ -54,6 +54,7 @@ public class TripManager {
 
         trips.get(rider.getId()).add(trip);
         selectedCab.setCurrentTrip(trip);
+        System.out.println(trips);
     }
 
     public List<Trip> getHistory(String riderId) {
