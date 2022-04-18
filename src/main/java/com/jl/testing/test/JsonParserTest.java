@@ -1,5 +1,6 @@
 package com.jl.testing.test;
 
+import javafx.util.Pair;
 import org.joda.time.DateTime;
 import org.joda.time.Seconds;
 
@@ -8,9 +9,16 @@ import org.joda.time.Seconds;
  */
 public class JsonParserTest {
     public static void main(String[] args) {
-        DateTime dt = new DateTime(1643692858686L);
-        System.out.println(dt);
-        System.out.println(dt.minusMinutes(2));
-        System.out.println(Seconds.secondsBetween(new DateTime().toInstant(), dt.toInstant()).getSeconds());
+       String a = "abc(121)";
+        String b = "abc";
+
+        Pair<String,String> p = new Pair<>();
+
+
+        System.out.println(a.indexOf("("));
+        System.out.println(b.indexOf("("));
+        System.out.println(a.substring(a.indexOf("(")+1,a.indexOf(")")));
+
+        
     }
 }
